@@ -40,6 +40,7 @@ app.use((req, res, next) => {
 });
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, "client/build")));
 
 //connecting mongoose
 mongoose.connect(process.env.DBURL, {
@@ -58,11 +59,16 @@ mongoose.connect(process.env.DBURL, {
 var authenticationRouts = require("./routs/authentication"),
 	indexRouts = require("./routs/index");
 //using routs files
-app.use(authenticationRouts);
-app.use(indexRouts);
 
 //app setings
 app.set("view engine", "ejs");
+
+app.get("/api", (req, res) => {
+	res.send("Api test route");
+});
+app.get("*", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "client/build", "index.html"));
+});
 
 var PORT = process.env.PORT || 5000;
 app.listen(PORT, process.env.IP, () => {
