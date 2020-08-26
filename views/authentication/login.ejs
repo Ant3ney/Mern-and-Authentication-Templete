@@ -1,0 +1,43 @@
+<%- include("../partials/header") -%>
+<% if(message){ %>
+	<h4>
+		<%= message %>
+	</h4>
+<% } %>
+<% if(err){ %>
+	<h4>
+		<%= err %>
+	</h4>
+<% } %>
+
+<h1>
+	Login
+</h1>
+
+<!-- Oauth authentication methoods -->
+
+<!-- Check if specifice methood is allowed -->
+<% if(allow.google){ %>
+	<a class="google-btn" href="/login/google">Login with Google</a>
+<% } %>
+<% if(allow.facebook){ %>
+	<a class="google-btn" href="/login/facebook">Login with Facebook</a>
+<% } %>
+<% if(allow.github){ %>
+	<a class="google-btn" href="/login/github">Login with Github</a>
+<% } %>
+
+<!-- Local authentication methoods -->
+<form action="/login" method="POST">
+	<label for="username">Username</label>
+	<input type="text" id="username" name="username">
+	
+	<label for="passwordfeild">Password</label>
+	<input type="password" id="passwordfeild" name="password">
+	
+	<button type="submit">
+		Login
+	</button>
+</form>
+
+<%- include("../partials/footer") -%>

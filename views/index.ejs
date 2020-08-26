@@ -1,0 +1,28 @@
+<%- include("partials/header") -%>
+<!-- Display flash message -->
+<% if(message){ %>
+	<h4>
+		<%= message %>
+	</h4>
+<% } %>
+<% if(err){ %>
+	<h4>
+		<%= err %>
+	</h4>
+<% } %>
+
+<h1>
+	Home / Landing page
+</h1>
+
+<!-- Display user authentication info -->
+<% if(currentUser){ %>
+	<h1>
+		Logged in as <%= currentUser.name %>!
+	</h1>
+<% } else{ %>
+	<h1>
+		Not logged in / Signed up
+	</h1>
+<% } %>
+<%- include("partials/footer") -%>
